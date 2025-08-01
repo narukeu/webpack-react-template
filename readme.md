@@ -1,6 +1,6 @@
 # Webpack React19 Template
 
-A modern React 19 application template built with Webpack 5, TypeScript, and Babel.
+A modern React 19 application template built with Webpack 5, TypeScript, and Esbuild.
 
 ## 简介 (Introduction)
 
@@ -19,7 +19,7 @@ Some situations require this.
 - [React 19](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Webpack 5](https://webpack.js.org/)
-- [Babel](https://babeljs.io/)
+- [Esbuild](https://esbuild.github.io/)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 
