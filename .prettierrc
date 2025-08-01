@@ -1,0 +1,4 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "$schema": "https://json.schemastore.org/prettierrc"
+}
