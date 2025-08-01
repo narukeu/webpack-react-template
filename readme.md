@@ -1,6 +1,6 @@
 # Webpack React19 Template
 
-A modern React 19 application template built with Webpack 5, TypeScript, and Babel.
+A modern React 19 application template built with Webpack 5, TypeScript, Tailwind CSS and Babel.
 
 ## 简介 (Introduction)
 
@@ -22,6 +22,7 @@ Some situations require this.
 - [Babel](https://babeljs.io/)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## 快速开始 (Quick Start)
 
