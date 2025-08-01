@@ -1,0 +1,71 @@
+{
+  "name": "webpack-react19-template",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "clear": "rimraf dist",
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx --ignore-path .gitignore",
+    "format": "prettier --write src/",
+    "type-check": "tsc --noEmit"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "simple-git-hooks": {
+    "pre-commit": "pnpm type-check"
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "npm run format"
+    ],
+    "*.ts?(x)": [
+      "npm run lint",
+      "npm run format"
+    ]
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/core": "^7.28.0",
+    "@babel/plugin-transform-runtime": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@eslint/compat": "^1.3.1",
+    "@eslint/js": "^9.32.0",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "babel-loader": "^10.0.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "dotenv": "^17.2.1",
+    "dotenv-loader": "^2.0.1",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "simple-git-hooks": "^2.13.1",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "webpack": "^5.101.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
