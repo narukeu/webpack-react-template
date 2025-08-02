@@ -1,6 +1,6 @@
 # Webpack React19 Template
 
-A modern React 19 application template built with Webpack 5, TypeScript, and SWC.
+A modern React 19 application template built with Webpack 5, TypeScript, Tailwind CSS v4 and SWC.
 
 ## 简介 (Introduction)
 
@@ -22,6 +22,7 @@ Some situations require this.
 - [SWC](https://swc.rs/)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
 
 ## 快速开始 (Quick Start)
 

@@ -2,7 +2,7 @@ import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import {SwcMinifyWebpackPlugin} from "swc-minify-webpack-plugin";
+import { SwcMinifyWebpackPlugin } from "swc-minify-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -39,7 +39,7 @@ export default (env, argv) => {
                 transform: {
                   react: {
                     development: !isProduction,
-                    refresh: false
+                    refresh: false,
                   },
                 },
               },
@@ -52,7 +52,13 @@ export default (env, argv) => {
         },
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
+          use: [
+            "style-loader",
+            "css-loader",
+            {
+              loader: "postcss-loader",
+            },
+          ],
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -83,9 +89,7 @@ export default (env, argv) => {
     },
     optimization: {
       minimize: isProduction,
-      minimizer: [
-        new SwcMinifyWebpackPlugin()
-      ],
+      minimizer: [new SwcMinifyWebpackPlugin()],
       splitChunks: {
         chunks: "all",
       },
