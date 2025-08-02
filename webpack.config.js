@@ -2,6 +2,7 @@ import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import {SwcMinifyWebpackPlugin} from "swc-minify-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,14 +32,17 @@ export default (env, argv) => {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: "swc-loader",
             options: {
-              presets: [
-                "@babel/preset-env",
-                ["@babel/preset-react", { runtime: "automatic" }],
-                "@babel/preset-typescript",
-              ],
-              plugins: ["@babel/plugin-transform-runtime"],
+              sourceMap: !isProduction,
+              jsc: {
+                transform: {
+                  react: {
+                    development: !isProduction,
+                    refresh: false
+                  },
+                },
+              },
             },
           },
         },
@@ -78,10 +82,14 @@ export default (env, argv) => {
       historyApiFallback: true,
     },
     optimization: {
+      minimize: isProduction,
+      minimizer: [
+        new SwcMinifyWebpackPlugin()
+      ],
       splitChunks: {
         chunks: "all",
       },
     },
-    devtool: isProduction ? false : 'source-map',
+    devtool: isProduction ? false : "source-map",
   };
 };

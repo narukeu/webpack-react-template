@@ -1,0 +1,28 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "importMeta": true,
+      "dynamicImport": true,
+      "topLevelAwait": true,
+      "decorators": true,
+      "privateMethod": true,
+      "classProperty": true
+    },
+    "target": "es2023",
+    "transform": {
+      "react": {
+        "runtime": "automatic"
+      }
+    },
+    "externalHelpers": true
+  },
+  "module": {
+    "type": "es6",
+    "strict": true,
+    "strictMode": true,
+    "importMeta": true
+  }
+}

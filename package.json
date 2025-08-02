@@ -15,7 +15,7 @@
   "license": "MIT",
   "description": "",
   "simple-git-hooks": {
-    "pre-commit": "pnpm type-check"
+    "pre-commit": "npm type-check"
   },
   "lint-staged": {
     "*.{js,json}": [
@@ -31,18 +31,13 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.0",
-    "@babel/core": "^7.28.0",
-    "@babel/plugin-transform-runtime": "^7.28.0",
-    "@babel/preset-env": "^7.28.0",
-    "@babel/preset-react": "^7.27.1",
-    "@babel/preset-typescript": "^7.27.1",
     "@eslint/compat": "^1.3.1",
     "@eslint/js": "^9.32.0",
+    "@swc/core": "^1.13.3",
+    "@swc/helpers": "^0.5.17",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "babel-loader": "^10.0.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
     "dotenv": "^17.2.1",
@@ -62,6 +57,8 @@
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.13.1",
     "style-loader": "^4.0.0",
+    "swc-loader": "^0.2.6",
+    "swc-minify-webpack-plugin": "^2.1.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "webpack": "^5.101.0",
