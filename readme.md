@@ -2,6 +2,15 @@
 
 A modern React 19 application template built with Webpack 5, TypeScript, and Babel.
 
+## 分支 (Branches)
+如果你更喜欢使用扩展的技术（例如 Tailwind CSS，或者 SWC），可以考虑切换到以下分支。
+
+If you prefer to use extended technologies (such as Tailwind CSS, or SWC), you may consider switching to the following branches.
+
+- [with-tailwind](https://github.com/narukeu/webpack-react-template/tree/with-tailwind)
+- [with-swc](https://github.com/narukeu/webpack-react-template/tree/with-swc)
+- [with-swc-tailwind](https://github.com/narukeu/webpack-react-template/tree/with-swc-tailwind)
+
 ## 简介 (Introduction)
 
 This is a lightweight, customizable template for React 19 applications with Webpack 5 as the module bundler. It provides a minimal yet complete setup for developing modern React applications with TypeScript support.
