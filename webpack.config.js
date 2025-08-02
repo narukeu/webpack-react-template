@@ -1,6 +1,5 @@
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { SwcMinifyWebpackPlugin } from "swc-minify-webpack-plugin";
 
@@ -75,7 +74,6 @@ export default (env, argv) => {
       ],
     },
     plugins: [
-      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({ template: "./public/index.html" }),
     ],
     devServer: {
