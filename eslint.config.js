@@ -1,65 +1,92 @@
-import { fixupConfigRules } from "@eslint/compat";
 import js from "@eslint/js";
-import { defineConfig } from "eslint/config";
-import pluginImport from "eslint-plugin-import";
-import pluginReact from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import globals from "globals";
-import tsEslintPlugin from "typescript-eslint";
+import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
+import importX from "eslint-plugin-import-x";
 
-export default defineConfig([
+import prettierRecommend from "eslint-plugin-prettier/recommended";
+import * as reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import tsdoc from "eslint-plugin-tsdoc";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+
+export default tseslint.config(
+  js.configs.recommended,
+  tseslint.configs.recommended,
+  // tseslint.configs.recommendedTypeChecked,
+  prettierRecommend,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   {
-    ignores: ["**/dist/**"],
-  },
-  {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    plugins: { js, "react-hooks": reactHooks, "react-refresh": reactRefresh },
-    extends: [
-      "js/recommended",
-      ...fixupConfigRules(pluginImport.flatConfigs.recommended),
-      ...fixupConfigRules(pluginImport.flatConfigs.typescript),
-    ],
-    languageOptions: { ecmaVersion: 2023, globals: globals.browser },
+    files: ["src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    languageOptions: {
+      ecmaVersion: 2023,
+      globals: { ...globals.browser },
+      parser: tseslint.parser,
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: import.meta.dirname,
+        projectService: true,
+      },
+    },
+    plugins: {
+      tsdoc,
+      "@typescript-eslint": tseslint.plugin,
+      "import-x": importX,
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      "no-unused-vars": "warn",
-      "no-console": "warn",
+      "tsdoc/syntax": "warn",
       "prefer-const": "warn",
-      "react-refresh/only-export-components": [
+      "@typescript-eslint/no-unused-vars": [
         "warn",
-        { allowConstantExport: true },
-      ],
-      "import/order": [
-        "error",
         {
-          // 定义导入分组
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unsafe-assignment": "warn",
+      "import-x/order": [
+        "warn",
+        {
           groups: [
             "builtin",
             "external",
             "internal",
+            "unknown",
             "parent",
             "sibling",
             "index",
+            "object",
+            "type",
           ],
-          // 定义每组内的排序规则
           alphabetize: {
-            order: "asc", // 按字母顺序升序排列
-            caseInsensitive: true, // 不区分大小写
+            order: "asc",
+            caseInsensitive: false,
           },
         },
       ],
-      "import/no-named-as-default-member": "off",
     },
     settings: {
-      "import/resolver": {
-        typescript: {
+      "import/resolver-next": [
+        createTypeScriptImportResolver({
+          // bun: true,
           alwaysTryTypes: true,
-          project: ["./"],
-        },
-      },
+          extensions: [
+            ".js",
+            ".cjs",
+            ".mjs",
+            ".jsx",
+            ".ts",
+            ".cjs",
+            ".cts",
+            ".mts",
+            ".tsx",
+            ".json",
+          ],
+        }),
+      ],
     },
   },
-  tsEslintPlugin.configs.recommended,
-  pluginReact.configs.flat.recommended,
-]);
+);
