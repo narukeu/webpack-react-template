@@ -1,6 +1,7 @@
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,17 +13,17 @@ export default (env, argv) => {
     entry: "./src/main.tsx",
     resolve: {
       alias: {
-        "@": resolve(__dirname, "src"),
+        "@": resolve(__dirname, "src")
       },
       extensions: [".tsx", ".ts", ".js", ".jsx"],
       exportsFields: ["exports"],
       importsFields: ["imports"],
-      conditionNames: ["import", "require", "node", "default"],
+      conditionNames: ["import", "require", "node", "default"]
     },
     output: {
       path: resolve(__dirname, "dist"),
       filename: isProduction ? "[name].[contenthash].js" : "[name].js",
-      clean: true,
+      clean: true
     },
     module: {
       rules: [
@@ -35,49 +36,55 @@ export default (env, argv) => {
               presets: [
                 "@babel/preset-env",
                 ["@babel/preset-react", { runtime: "automatic" }],
-                "@babel/preset-typescript",
+                "@babel/preset-typescript"
               ],
-              plugins: ["@babel/plugin-transform-runtime"],
-            },
-          },
+              plugins: [
+                "@babel/plugin-transform-runtime",
+                ...(isProduction ? [] : ["react-refresh/babel"])
+              ]
+            }
+          }
         },
         {
           test: /\.html$/i,
-          loader: "html-loader",
+          loader: "html-loader"
         },
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
+          use: ["style-loader", "css-loader"]
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: "asset/resource",
+          type: "asset/resource"
         },
         {
           test: /\.(mp3|wav|ogg|flac|aac)$/i,
-          type: "asset/resource",
+          type: "asset/resource"
         },
         {
           test: /\.json$/,
-          type: "json",
-        },
-      ],
+          type: "json"
+        }
+      ]
     },
-    plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" })],
+    plugins: [
+      new HtmlWebpackPlugin({ template: "./public/index.html" }),
+      ...(isProduction ? [] : [new ReactRefreshWebpackPlugin()])
+    ],
     devServer: {
       port: 3000,
       static: {
-        directory: join(__dirname, "public"),
+        directory: join(__dirname, "public")
       },
       compress: true,
       hot: true,
-      historyApiFallback: true,
+      historyApiFallback: true
     },
     optimization: {
       splitChunks: {
-        chunks: "all",
-      },
+        chunks: "all"
+      }
     },
-    devtool: isProduction ? false : "source-map",
+    devtool: isProduction ? false : "source-map"
   };
 };
