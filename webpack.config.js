@@ -39,7 +39,7 @@ export default (env, argv) => {
                 transform: {
                   react: {
                     development: !isProduction,
-                    refresh: false
+                    refresh: !isProduction
                   }
                 }
               }

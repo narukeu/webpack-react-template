@@ -1,0 +1,64 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+  },
+  "files": {
+    "ignoreUnknown": true,
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "lineEnding": "lf",
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "useAwait": "warn",
+        "noVar": "warn",
+      },
+      "performance": {
+        "noDelete": "error",
+      },
+      "style": {
+        "useConst": "warn",
+        "useForOf": "error",
+        "useComponentExportOnlyModules": "warn",
+        "noImplicitBoolean": "error",
+        "useSelfClosingElements": "error",
+      },
+      "correctness": {
+        "useSingleJsDocAsterisk": "error",
+        "noUnusedVariables": "warn",
+        "useHookAtTopLevel": "warn",
+        "useExhaustiveDependencies": "warn",
+        "noReactPropAssignments": "error",
+        "noNestedComponentDefinitions": "error",
+      },
+    },
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "jsxQuoteStyle": "double",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+    },
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+      },
+    },
+  },
+}
